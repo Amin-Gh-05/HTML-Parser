@@ -31,8 +31,7 @@ public class Country {
 
     @Override
     public String toString() {
-        //TODO
-        return "";
+        return name + ", " + capital + ", " + population + ", " + area;
     }
 
     @Override
