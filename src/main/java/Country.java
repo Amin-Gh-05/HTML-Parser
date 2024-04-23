@@ -1,14 +1,16 @@
 import java.util.Objects;
 
 public class Country {
-    private String name;
-    private String capital;
-    private int population;
-    private double area;
+    private final String name;
+    private final String capital;
+    private final int population;
+    private final double area;
 
     public Country(String name, String capital, int population, double area) {
-        //TODO
-
+        this.name = name;
+        this.capital = capital;
+        this.population = population;
+        this.area = area;
     }
 
     public String getName() {

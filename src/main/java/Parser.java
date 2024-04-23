@@ -11,38 +11,36 @@ public class Parser {
 
     public List<Country> sortByName(){
         List<Country> sortedByName = new ArrayList<>(countries);
-        // Sort countries alphabetically (least)
-        //TODO
-        return  sortedByName;
+        sortedByName.sort(Comparator.comparing(Country::getName));
+        return sortedByName;
     }
 
     public List<Country> sortByPopulation(){
         List<Country> sortedByPopulation = new ArrayList<>(countries);
-        // Sort countries by population (most)
-        //TODO
+        sortedByPopulation.sort(Comparator.comparing(Country::getPopulation));
         return sortedByPopulation;
     }
 
     public List<Country> sortByArea(){
         List<Country> sortedByArea = new ArrayList<>(countries);
-        // Sort countries by area (most)
-        //TODO
+        sortedByArea.sort(Comparator.comparing(Country::getArea));
         return sortedByArea;
     }
 
     public void setUp() throws IOException {
-
-        //Parse the HTML file using Jsoup
-        //TODO
-
-        // Extract data from the HTML
-        //TODO
-
-        // Iterate through each country div to extract country data
-        //TODO
+        File file = new File("src/Resources/country-list.html");
+        Document doc = Jsoup.parse(file , "UTF-8");
+        Elements countriesElements = doc.select("div.country");
+        for (Element country : countriesElements) {
+            String name = country.select(".country-name").text();
+            String capital = country.select(".country-capital").text();
+            int population = Integer.parseInt(country.select(".country-population").text());
+            double area = Double.parseDouble(country.select(".country-area").text());
+            countries.add(new Country(name, capital, population, area));
+        }
     }
 
     public static void main(String[] args) {
-        //you can test your code here before you run the unit tests ;)
+
     }
 }
